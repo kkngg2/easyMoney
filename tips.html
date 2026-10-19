@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>easyMoney - Tips & Guide</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <section id="navbar">
+    <div class="logo">easyMoney</div>
+    <ul>
+      <li><a href="index.html">My Wallet</a></li>
+      <li><a href="add.html">Add Transaction</a></li>
+      <li><a href="limit.html">Spending Limit</a></li>
+      <li><a href="goals.html">Goals</a></li>
+      <li><a class="active" href="tips.html">Tips</a></li>
+      <li><a href="account.html">Account</a></li>
+    </ul>
+  </section>
+
+  <main class="main-content">
+    <header class="section-header">
+            <div>
+                <h1>Tips & Guides</h1>
+                <p class="subtitle">Practical advice and insights shared by the author</p>
+            </div>
+            <!-- Admin button to add new tips -->
+            <button class="btn-primary" id="btnCreateTip">+ Create Tip</button>
+        </header>
+
+        <!-- Filter & Search Controls -->
+        <section class="filter-card">
+            <h3>Search & Filter</h3>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="searchInput">Search:</label>
+                    <input type="text" id="searchInput" placeholder="Type keywords...">
+                </div>
+                <div class="filter-group">
+                    <label for="categorySelect">Category:</label>
+                    <select id="categorySelect">
+                        <option value="all">All Categories</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Budgeting">Budgeting</option>
+                        <option value="Investing">Investing</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Tip Posts List -->
+        <section id="tipsContainer">
+            <!-- Tip posts will be rendered here dynamically -->
+        </section>
+
+    </main>
+
+    <!-- 3. MODAL (Create & Edit Tip) -->
+    <div class="modal" id="tipModal">
+        <div class="modal-content">
+            <h3 id="modalTitle" style="margin-bottom: 12px;">Create New Tip</h3>
+            
+            <form id="tipForm">
+                <input type="hidden" id="tipId">
+                
+                <div class="form-group">
+                    <label for="tipTitle">Title</label>
+                    <input type="text" id="tipTitle" required placeholder="e.g., How to save 20% of your income...">
+                </div>
+
+                <div class="form-group">
+                    <label for="tipCategory">Category</label>
+                    <select id="tipCategory" required>
+                        <option value="Finance">Finance</option>
+                        <option value="Budgeting">Budgeting</option>
+                        <option value="Investing">Investing</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipContent">Content</label>
+                    <textarea id="tipContent" rows="6" required placeholder="Write your tip details here..." style="padding: 10px 14px; border: 2px solid #e5e5e5; border-radius: 10px; font-family: inherit; outline: none;"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="btnCancel">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="tips.js"></script>
+    </body>
+    </html>

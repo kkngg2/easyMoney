@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>easyMoney - Goals</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <section id="navbar">
+      <div class="logo">easyMoney</div>
+      <ul>
+        <li><a href="index.html">My Wallet</a></li>
+        <li><a href="add.html">Add Transaction</a></li>
+        <li><a href="limit.html">Spending Limit</a></li>
+        <li><a class="active" href="goals.html">Goals</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="account.html">Account</a></li>
+      </ul>
+  </section>
+
+  <main class="main-content">
+    <section id="add">
+        <div id="section-header">
+            <h1>Saving Goals</h1>
+            <button id="open-add-modal-btn" class="btn-primary">+ Add Goal</button>
+        </div>
+    </section>
+
+    <section id="filter">
+        <div class="filter-controls">
+            <div class="filter-group">
+                <label for="filter-status">Status:</label>
+                <select id="filter-status">
+                    <option value="all">All</option>
+                    <option value="in_progress">Ongoing</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort-by">Sort:</label>
+                <select id="sort-by">
+                    <option value="deadline">Finish Date</option>
+                    <option value="progress">Completion %</option>
+                    <option value="target">Money</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <div id="goal-groups-container" class="goals-grid"></div>
+
+    <div id="add-goal-modal" class="modal">
+  <div class="modal-content">
+    <h2 id="modal-title">Add Goal</h2>
+    <form id="add-goal-form">
+      <input type="hidden" id="goal-id" />
+      <div class="form-group">
+        <label for="goal-name">Name</label>
+        <input type="text" id="goal-name" placeholder="Example: ✈️ Travel" required/>
+
+        <label for="goal-amount">Target amount</label>
+        <input type="number" id="goal-amount" placeholder="0" min="1" required/>
+
+        <label for="wallet-currency">Currency</label>
+        <select id="wallet-currency" required>
+            <option value="VND">VND</option>
+        </select>
+
+        <label for="finish-date">Finish Date</label>
+        <input type="date" id="finish-date" required/>
+
+        <label>Saving frequency</label>
+        <div class="input-inline-group">
+          <select id="period-type" required>
+              <option value="day">Daily</option>
+              <option value="week">Weekly</option>
+              <option value="month">Monthly</option>
+          </select>
+          <input type="number" id="period-saving" placeholder="Amount" min="0" required/>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="close-add-modal-btn" class="btn-secondary">Cancel</button>
+        <button type="submit" class="btn-primary">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    <div id="transaction-modal" class="modal">
+      <div class="modal-content modal-small">
+        <h2 id="trans-modal-title">Add money to goal</h2>
+        <form id="transaction-form">
+          <input type="hidden" id="trans-goal-id" />
+          <input type="hidden" id="trans-type" value="deposit" />
+          <div class="form-group">
+            <label for="trans-amount">Enter the money</label>
+            <input type="number" id="trans-amount" placeholder="0" min="1" required />
+          </div>
+          <div class="modal-actions">
+            <button type="button" id="close-trans-modal-btn" class="btn-secondary">Cancel</button>
+            <button type="submit" class="btn-primary" id="trans-submit-btn">Enter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+  <script src="goals.js"></script>
+</body>
+</html

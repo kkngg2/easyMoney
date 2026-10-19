@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>easyMoney - Add Transaction</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <section id="navbar">
+    <div class="logo">easyMoney</div>
+    <ul>
+      <li><a href="index.html">My Wallet</a></li>
+      <li><a href="add.html">Add Transaction</a></li>
+      <li><a href="limit.html">Spending Limit</a></li>
+      <li><a href="goals.html">Goals</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a class="active" href="account.html">Account</a></li>
+    </ul>
+  </section>
+
+        <main class="main-content">
+        
+            <div id="auth-view" class="auth-wrapper hidden">
+                <div class="card auth-card">
+                    <div class="auth-tabs">
+                        <button type="button" class="tab-btn active" id="tab-login-btn">Log In</button>
+                        <button type="button" class="tab-btn" id="tab-register-btn">Register</button>
+                    </div>
+
+                    <form id="login-form" class="auth-form">
+                        <h2>Welcome Back</h2>
+                        <p class="text-muted">Log in to sync your financial data across sessions.</p>
+                        
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" placeholder="example@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                        </div>
+                        <div class="auth-extra-links">
+                            <button type="button" class="btn-link" id="show-forgot-btn">Forgot Password?</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fa-solid fa-right-to-bracket"></i> Log In
+                        </button>
+                    </form>
+
+                    <form id="register-form" class="auth-form hidden">
+                        <h2>Create Account</h2>
+                        <p class="text-muted">Start tracking your expenses and savings goals.</p>
+                        <div class="form-group">
+                            <label for="reg-fullname">Name</label>
+                            <input type="text" id="reg-fullname" placeholder="e.g. ngng2026" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Email Address</label>
+                            <input type="email" id="reg-email" placeholder="example@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Password</label>
+                            <input type="password" id="reg-password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fa-solid fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+\
+            <form id="forgot-form" class="auth-form-box hidden">
+                <h2>Forgot Password</h2>
+                <p class="subtitle">Enter your email to receive a 6-digit verification code valid for 1 hour.</p>
+
+                <div class="form-group">
+                    <label for="forgot-email">EMAIL ADDRESS</label>
+                    <input type="email" id="forgot-email" placeholder="example@domain.com" required>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 16px;">
+                    <button type="button" class="btn-secondary" id="back-to-login-btn">BACK</button>
+                    <button type="submit" class="btn-primary">SEND CODE</button>
+                </div>
+            </form>
+
+            <form id="reset-form" class="auth-form-box hidden">
+                <h2>Reset Password</h2>
+                <p class="subtitle">Enter the 6-digit code sent to your email and your new password.</p>
+
+                <div class="form-group">
+                    <label for="reset-code">VERIFICATION CODE (OTP)</label>
+                    <input type="text" id="reset-code" maxlength="6" placeholder="123456" required style="letter-spacing: 4px; font-weight: bold; text-align: center;">
+                </div>
+
+                <div class="form-group">
+                    <label for="reset-new-password">NEW PASSWORD</label>
+                    <input type="password" id="reset-new-password" placeholder="••••••••" required>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 16px;">
+                    <button type="button" class="btn-secondary" id="cancel-reset-btn">CANCEL</button>
+                    <button type="submit" class="btn-primary">CHANGE PASSWORD</button>
+                </div>
+            </form>
+        </div>
+
+            <div id="profile-view" class="profile-wrapper hidden">
+                <div class="page-title">
+                    <h1>Account Settings</h1>
+                </div>
+
+                <div class="grid-layout">
+                    <aside class="card profile-card">
+                        <div class="avatar-wrapper">
+                            <img id="avatar-preview" src="" alt="User Avatar">
+                            <label for="avatar-upload" class="avatar-upload-btn" title="Change Avatar">
+                                <i class="fa-solid fa-camera"></i>
+                            </label>
+                            <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                        </div>
+                        <h2 id="display-name" class="user-fullname">---</h2>
+                        <p id="display-email" class="user-email">---</p>
+                        <span class="badge badge-primary"><i class="fa-solid fa-shield-halved"></i> Active User</span>
+
+                        <hr class="divider">
+
+                        <button type="button" id="logout-btn" class="btn btn-danger btn-block mt-20">
+                            <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                        </button>
+                    </aside>
+
+                    <section class="settings-content">
+                        <!-- Personal Profile Form -->
+                        <div class="card settings-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-user-gear"></i>
+                                <h3>Personal Information</h3>
+                            </div>
+                            <form id="profile-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="full-name">Name</label>
+                                        <input type="text" id="full-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" disabled title="Email cannot be changed">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa-solid fa-floppy-disk"></i> Save Profile Changes
+                                </button>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">Action successful!</span>
+    </div>
+
+    <script src="account.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>easyMoney - Add Transaction</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <section id="navbar">
+    <div class="logo">easyMoney</div>
+    <ul>
+      <li><a href="index.html">My Wallet</a></li>
+      <li><a class="active" href="add.html">Add Transaction</a></li>
+      <li><a href="limit.html">Spending Limit</a></li>
+      <li><a href="goals.html">Goals</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="account.html">Account</a></li>
+    </ul>
+  </section>
+
+  <main class="main-content">
+    <section id="add">
+      <div class="section-header">
+        <h1>Add Income & Expense</h1>
+      </div>
+      <div class="action-buttons">
+        <button type="button" id="open-income-modal-btn" class="btn-primary-income">+ Add Income</button>
+        <button type="button" id="open-expense-modal-btn" class="btn-primary">+ Add Expense</button>
+      </div>
+    </section>
+    
+    <section id="history-section">
+      <div class="filter-header">
+        <h1>History</h1>
+        <div class="filter-card">
+          <h3>Filter History:</h3>
+          <div class="filter-controls">
+            <div class="filter-group">
+              <label for="filter-date">Date:</label>
+              <input type="date" id="filter-date" />
+              <button type="button" id="clear-date-btn" class="btn-icon">Clear</button>
+            </div>
+            <div class="filter-group">
+              <label for="filter-month">Month:</label>
+              <select id="filter-month">
+                <option value="all">All</option>
+                <option value="Jan">Jan</option>
+                <option value="Feb">Feb</option>
+                <option value="Mar">Mar</option>
+                <option value="Apr">Apr</option>
+                <option value="May">May</option>
+                <option value="Jun">Jun</option>
+                <option value="Jul">Jul</option>
+                <option value="Aug">Aug</option>
+                <option value="Sep">Sep</option>
+                <option value="Oct">Oct</option>
+                <option value="Nov">Nov</option>
+                <option value="Dec">Dec</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="filter-year">Year:</label>
+              <select id="filter-year">
+                <option value="2026" selected>2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+              </select>
+            </div>
+            <button type="button" id="apply-filter-btn" class="btn-primary">Enter</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-cards">
+        <div class="summary-card card-income">
+          <h4>Total Income</h4>
+          <p id="total-income-val">0 VNĐ</p>
+        </div>
+        <div class="summary-card card-expense">
+          <h4>Total Expense</h4>
+          <p id="total-expense-val">0 VNĐ</p>
+        </div>
+        <div class="summary-card card-net">
+          <h4>Income - Expense</h4>
+          <p id="net-balance-val">0 VNĐ</p>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-container-card">
+          <h3>Expenses by Category (VNĐ)</h3>
+          <div class="chart-wrapper">
+            <canvas id="expenseChartVND"></canvas>
+          </div>
+        </div>
+        <div class="chart-container-card">
+          <h3>Expenses by Category (USD)</h3>
+          <div class="chart-wrapper">
+            <canvas id="expenseChartUSD"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="history-card">
+        <div class="history-header">
+          <h3>Transaction History</h3>
+          <div class="tab-buttons">
+            <button type="button" class="tab-btn active" data-tab="all">All</button>
+            <button type="button" class="tab-btn tab-income-btn" data-tab="income">Income</button>
+            <button type="button" class="tab-btn tab-expense-btn" data-tab="expense">Expense</button>
+          </div>
+        </div>
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Wallet</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  <div id="add-income-modal" class="modal">
+    <div class="modal-content">
+      <h2>Add Income</h2>
+      <form id="add-income-form">
+        <div class="form-group">
+          <label>Enter the money</label>
+          <input type="number" id="income-amount" placeholder="0" min="0" required/>
+          <label>Wallet</label>
+          <select id="income-wallet-type" required></select>
+          <label>Currency</label>
+          <select id="income-currency" required>
+            <option value="VNĐ">VNĐ</option>
+            <option value="USD">USD</option>
+          </select>
+          <label>Date</label>
+          <input type="date" id="income-date" required/>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+          <button type="submit" class="btn-primary-income">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="add-expense-modal" class="modal">
+    <div class="modal-content">
+      <h2>Add Expense</h2>
+      <form id="add-expense-form">
+        <div class="form-group">
+          <label>Enter the money</label>
+          <input type="number" id="expense-amount" placeholder="0" min="0" required />
+          <label>Category</label>
+          <select id="expense-category" required>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Bills">Bills</option>
+            <option value="Emergency Fund">Emergency Fund</option>
+            <option value="Other">Other</option>
+          </select>
+          <label>Wallet</label>
+          <select id="expense-wallet-type" required></select>
+          <label>Currency</label>
+          <select id="expense-currency" required>
+            <option value="VNĐ">VNĐ</option>
+            <option value="USD">USD</option>
+          </select>
+          <label>Date</label>
+          <input type="date" id="expense-date" required/>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+          <button type="submit" class="btn-primary">Add Expense</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="edit-transaction-modal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Transaction</h2>
+      <form id="edit-transaction-form">
+        <div class="form-group">
+          <label>Enter the money</label>
+          <input type="number" id="edit-transaction-amount" min="0" required />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+          <button type="submit" class="btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="delete-confirm-modal" class="modal">
+    <div class="modal-content">
+      <h2>Are you sure to delete this transaction?</h2>
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button type="button" id="cancel-delete-btn" class="btn-secondary">No</button>
+          <button type="button" id="confirm-delete-btn" class="btn-danger">Yes</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="add.js"></script>
+</body>
+</html>

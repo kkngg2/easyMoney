@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>easyMoney - My Wallet</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <section id="navbar">
+      <div class="logo">easyMoney</div>
+      <ul>
+        <li><a class="active" href="index.html">My Wallet</a></li>
+        <li><a href="add.html">Add Transaction</a></li>
+        <li><a href="limit.html">Spending Limit</a></li>
+        <li><a href="goals.html">Goals</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="account.html">Account</a></li>
+      </ul>
+  </section>
+
+  <main class="main-content">
+    <section id="my-wallet">
+      <div class="section-header">
+          <h1>My Wallet</h1>
+          <button id="open-add-modal-btn" class="btn-primary">+ Add wallet</button>
+      </div>
+      <div id="wallet-groups-container"></div>
+    </section>
+
+    <div id="add-wallet-modal" class="modal">
+      <div class="modal-content">
+        <h2>Add Wallet</h2>
+        <form id="add-wallet-form">
+          <div class="form-group">
+            <label>Type</label>
+            <select id="wallet-type" required>
+                <option value="💰 Cash">Cash</option>
+                <option value="💳 E-Wallet">E-Wallet</option>
+                <option value="🏦 Bank Account">Bank Account</option>
+            </select>
+            <label>Name</label>
+            <input type="text" id="wallet-name" placeholder="Example: MoMo, Vietcombank..." required />
+            <label>Enter the money</label>
+            <input type="number" id="wallet-amount" placeholder="0" min="0" required />
+            <label>Currency</label>
+            <select id="wallet-currency" required>
+                <option value="VNĐ">VNĐ</option>
+                <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="button" id="close-add-modal-btn" class="btn-secondary">Cancel</button>
+            <button type="submit" class="btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="edit-wallet-modal" class="modal">
+      <div class="modal-content">
+        <h2>Edit Wallet</h2>
+        <form id="edit-wallet-form">
+          <div class="form-group">
+            <label>Enter the money</label>
+            <input type="number" id="edit-wallet-amount" min="0" required />
+          </div>
+          <div class="modal-actions">
+            <button type="button" id="close-edit-modal-btn" class="btn-secondary">Cancel</button>
+            <button type="submit" class="btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="delete-confirm-modal" class="modal">
+      <div class="modal-content">
+        <h2>Are you sure to delete this wallet?</h2>
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button id="cancel-delete-btn" class="btn-secondary">No</button>
+          <button id="confirm-delete-btn" class="btn-danger">Yes</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
